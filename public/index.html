@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/favicon.ico">
+  <meta charset="utf-8">
+  <title>Flower Catalog</title>
+  <script type="text/javascript">
+    let hide =function () {
+      let img = document.getElementById("img");
+      img.style.visibility="hidden";
+      setTimeout(function () {
+        img.style.visibility="visible";
+      },1000);
+    }
+  </script>
+</head>
+
+<body>
+  <h1 align="center">Flower Catalog</h1>
+  <hr>
+  <div class="parent">
+    <div class="big-image">
+      <img src="images/freshorigins.jpg" alt="freshorigins" class="freshorigins">
+    </div>
+    <div class="content">
+      <ul>
+        <li><a href="Abeliophyllum.html">Abeliophyllum</a></li>
+        <li><a href="Ageratum.html">Ageratum</a></li>
+      </ul>
+      <img onclick="hide()" id="img" src="images/animated-flower-image-0021.gif" alt="animated-Flower.gif">
+      <a href="guestBook.html" class="guest">Guest Book</a>
+    </div>
+  </div>
+</body>
+</html>

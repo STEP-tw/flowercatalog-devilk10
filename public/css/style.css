@@ -1,0 +1,80 @@
+h1 {
+  color : orange;
+}
+
+span {
+  font-weight: bold;
+}
+
+form, h2, hr {
+  margin-left: 70px;
+  margin-right: 70px;
+}
+
+img {
+  margin-left: 70px;
+}
+
+.parent {
+  height: 800px;
+}
+
+.big-image {
+  float: left;
+  height: 100%;
+  width: 75%;
+}
+
+.content {
+  margin-top: 300px;
+  float: right;
+  align : center;
+  height: 100%;
+  width: 25%;
+}
+
+.ageratumDetails {
+  margin-top: 200px;
+  margin-left: 70px;
+  height: 100%;
+  float: left;
+  width: 30%;
+}
+
+.ageratumImage {
+  float: left;
+  height: 100%;
+  width: 57%;
+}
+
+.image {
+  float: left;
+  height: 100%;
+  width: 44%;
+}
+
+.details {
+  margin-top: 270px;
+  margin-left: 80px;
+  float: left;
+  width: 40%;
+}
+
+.Abeliophyllum {
+  height: 700px;
+  width: 630px;
+}
+
+.freshorigins {
+  height: 690px;
+  width: 990px;
+}
+
+.comments{
+  margin-left:70px;
+  font-size:20px;
+}
+
+#commentForm {
+  font-size: 20px;
+}
