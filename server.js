@@ -6,6 +6,15 @@ let registered_users = [{userName:'chetan',name:'chetan sangle'},{userName:'keta
 let toS = o=>JSON.stringify(o,null,2);
 let commentsFile = require('./data/comments.json');
 
+const displayComments=function () {
+  let comments = '';
+  commentsFile.forEach(function (comment) {
+    comments+=`<p class="comments">${comment.date}, Name: ${comment.name},
+    comment: ${comment.comment}</p>`
+  });
+  return comments;
+};
+
 let getFileContents = function(filename, res) {
   let defaultDir='./public';
   let filePath = defaultDir + filename;
@@ -53,10 +62,12 @@ let handleUnsupportedURL = function (res) {
   res.write("page not found");
 };
 
-let recordComment = function (dateS,timeS,name,comment) {
-  commentsFile.unshift(`<p class="comments"> ${dateS} ,
-    ${timeS}  by ${name} <br> ${comment} </p>`);
-  fs.writeFile("./data/comments.json", JSON.stringify(commentsFile), function(err) {
+let recordComment = function (req) {
+  req.body.date=new Date().toLocaleString();
+  req.body.name=req.body.name.replace(/\+/g,' ');
+  req.body.comment=req.body.comment.replace(/\+/g,' ');
+  commentsFile.unshift(req.body);
+  fs.writeFile("./data/comments.json", JSON.stringify(commentsFile,null,2), function(err) {
     if (err) return;
   });
 };
@@ -91,21 +102,16 @@ app.get('/logout',(req,res)=>{
 });
 app.get('/userBook.html',(req,res)=>{
   let contents = getFileContents('/userBook.html');
-  res.write(contents+commentsFile.join('\n'));
+  res.write(contents+displayComments());
   res.end();
 });
 app.get('/guestBook.html',(req,res)=>{
   let contents = getFileContents('/guestBook.html');
-  res.write(contents+commentsFile.join('\n'));
+  res.write(contents+displayComments());
   res.end();
 });
 app.post('/comment',(req,res)=>{
-  let date=new Date();
-  let name=req.body.name;
-  let comment=req.body.comment;
-  let dateS=date.toLocaleDateString();
-  let timeS=date.toLocaleTimeString();
-  recordComment(dateS,timeS,name,comment);
+  recordComment(req);
   res.redirect('/userBook.html');
 });
 app.postUse(serveFile);
